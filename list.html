@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Details</title>
+    <link rel="stylesheet" href="lists.css">
+</head>
+<body>
+
+    <!-- Grid Container Div-->
+    <div class="grid-container">
+
+        <!-- Go Back Onclick Event Div -->
+         <div class="grid-item back mainTheme" onclick="goBack()">
+            <h1>Go back to Lists Menu</h1>
+         </div>
+
+        <!-- Header -->
+        <div class="grid-item header mainTheme">
+            <h1 id="listTitle">Loading...</h1>
+        </div>
+
+        <!-- Delete Onclick Event Div -->
+         <div class="grid-item delete mainTheme" onclick="deleteList()">
+            <h1>Delete THIS List</h1>
+         </div>
+
+        <!-- Sidebar -->
+        <div class="grid-item sidebar" id="sidebarContainer"></div>
+
+        <!-- Sections -->
+        <div class="grid-item section" id="sectionsContainer"></div>
+
+        <!-- Footer -->
+        <div class="grid-item footer">
+            <p>© 2025 Jakub Miczek "To-Do List App"</p>
+        </div>
+
+    </div>
+
+    <!-- Whole Page Div -->
+    <div class = "wholePage">
+
+        <!-- Adding Section Menu Div -->
+        <div class="addSectionMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <div class="addSectionItem">
+                <h2>Section Name:</h2>
+            </div>
+
+            <hr>
+
+            <!-- Place to type the Section Name -->
+            <input value="" class="addSectionItem sectionInput sectionAddStyle" type="text" id="sectionNameInput" placeholder="< < < Enter section name > > >" >
+
+            <hr>
+
+            <!-- Options Div -->
+            <div class="addSectionOptions">
+
+                <!-- Add Section Onclick Event Div -->
+                <div class="addSectionItem sectionAdd" onclick="addSection()"><h2>Add Section</h2></div>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event Div -->
+                <div class="addSectionItem sectionAdd" onclick="menuOptions('.addSectionMenu','auto',-10,'none');"><h2>Cancel</h2></div>
+            </div>
+
+        </div>
+
+        <!-- Adding New Note Menu Div -->
+        <div class="addNoteMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <div class="addNoteItem">
+                <h2>Write something...</h2>
+            </div>
+
+            <hr>
+
+            <!-- Place to write a Note -->
+             <textarea class="addNoteItem noteArea noteAddStyle" id="noteContentInput" placeholder="< < < Enter your note here > > >"></textarea>
+
+            <hr>
+
+            <!-- Options Div -->
+            <div class="addNoteOptions">
+
+                <!-- Add Note Onclick Event Div -->
+                <div class="addNoteItem noteAdd" onclick="addNote()"><h2>Add Note</h2></div>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event Div -->
+                <div class="addSectionItem sectionAdd" onclick="menuOptions('.addNoteMenu','auto',-10,'none');"><h2>Cancel</h2></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="listsMenu.js"></script>
+    <script src="list.js"></script>
+    <script src="sharedFunctions.js"></script>
+
+</body>
+</html>

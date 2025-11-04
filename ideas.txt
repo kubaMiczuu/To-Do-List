@@ -1,0 +1,2 @@
+jesli dlugosc tekstu dluzsza niz maksymalna szerokosc pola, to tekst powininen się ucinac
+i dodawac 3 kropki

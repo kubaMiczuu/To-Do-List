@@ -1,0 +1,130 @@
+/* Body */
+body {
+    background-color: #202020;
+}
+/* Whole page */
+.wholePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202020;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.9;
+}
+/* Main Theme */
+.mainTheme {
+    background-color: #302f2f;
+    border: 1px solid wheat;
+    color: wheat;
+}
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    grid-template-rows: 1fr auto;
+    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    grid-template-areas: 
+        "header header"
+        "menu menu"
+        "footer footer";
+}
+.grid-item {
+    font-weight: bold;
+    background-color: #202020;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+.header {
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    border: 1px solid wheat;
+    grid-area: header;
+    background-color: #302f2f;;
+}
+.menu {
+    grid-area: menu;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    text-align: left;
+}
+.footer {
+    grid-area: footer;
+    text-align: right;
+    color: wheat;
+}
+
+/* Lists */
+.listElement {
+    border: 2px dashed wheat;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 20%;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Add List Menu */
+.addListMenu {
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    display: none;
+    width: 40%;
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.addListItem {
+    text-align: center;
+    width: 80%;
+    flex: 1 1 0;
+}
+.addListMenu hr {
+    border: none;              
+    height: 2px;               
+    background-color: wheat;
+    width: 90%;
+}
+.listAddStyle {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.addListOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.listInput {
+    font-size:medium;
+    background-color: #302f2f;
+    border: none;
+    color: wheat;
+}
+.listInput::placeholder {
+    color: wheat;
+}
+.listInput:focus{
+    outline: none;
+    box-shadow: none;
+}
+.listAdd {
+    font-size: medium;
+    cursor: pointer;
+}
