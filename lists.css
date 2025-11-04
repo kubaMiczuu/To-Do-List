@@ -91,7 +91,7 @@ body {
 }
 .sectionElement {
     display: grid;
-    grid-template-columns: 40% 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
         "sectionHeader sectionHeader addNoteButton deleteSectionButton"
         "notesContainer notesContainer notesContainer notesContainer";
@@ -116,13 +116,14 @@ body {
     grid-area: notesContainer;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
 .noteElement {
     padding: 10px;
-    cursor: pointer;
     text-align: left;
-    width: 100%;
+    width: 95%;
+    height: auto;
     transition: background-color 0.3s, border-color 0.3s;
 }
 .expandSign {

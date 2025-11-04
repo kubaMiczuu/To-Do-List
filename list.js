@@ -5,6 +5,8 @@ const parentLists = JSON.parse(localStorage.getItem('lists')) || [];
 const currentList = parentLists[listId];
 const title = document.getElementById('listTitle');
 const sections = currentList.sections || [];
+let activeSectionIndex = null;
+let activeSection = null;
 
 //Changing the title to List Name
 if(currentList) title.textContent = currentList.name;
@@ -91,17 +93,17 @@ function expandSection(sectionIndex, currentSection, sectionClass) {
 //Rendering Notes inside Section function
 function renderNotes(sectionContainer, sectionIndex, currentSection) {
     sectionContainer.querySelectorAll('.noteElement').forEach(el => el.remove());
-    
-    //Add Note buttons
+
+    // Add Note button
     const addNoteButton = document.createElement('div');
     addNoteButton.className = 'noteElement addNote';
     addNoteButton.innerHTML = `<h3>+ Add New Note</h3>`;
     addNoteButton.onclick = function() {
-        addNote(sectionIndex, currentSection);
+        openNoteMenu(sectionIndex);
     };
     sectionContainer.appendChild(addNoteButton);
 
-    //Delete Section button
+    // Delete Section button
     const deleteSectionButton = document.createElement('div');
     deleteSectionButton.className = 'noteElement deleteSection';
     deleteSectionButton.innerHTML = `<h3>- Delete Section</h3>`;
@@ -110,19 +112,52 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
     };
     sectionContainer.appendChild(deleteSectionButton);
 
-    //Rendering Notes
-    currentSection.items.forEach((note, i) => {
+    // Notes Container
+    const notesContainer = document.createElement('div');
+    notesContainer.className = 'noteElement notesContainer';
+    sectionContainer.appendChild(notesContainer);
+
+    // Render notes
+    currentSection.items.forEach((noteObj, i) => {
         const noteElement = document.createElement('div');
         noteElement.className = `noteElement mainTheme`;
-        noteElement.innerHTML = `<h3>- ${note}</h3>`;
-        sectionContainer.appendChild(noteElement);
+        noteElement.innerHTML = `<h3>- ${noteObj.name}</h3>`;
+        notesContainer.appendChild(noteElement);
     });
-
 }
+
+
+//Opening the note menu
+function openNoteMenu(sectionIndex) {
+    activeSectionIndex = sectionIndex;
+    activeSection = sections[sectionIndex];
+    menuOptions('.addNoteMenu', 'hidden', 0, 'flex');
+}
+
 
 //Deletin Section function
 function deleteSection(sectionIndex) {
     sections.splice(sectionIndex, 1);
     localStorage.setItem('lists', JSON.stringify(parentLists));
     renderSections();
+}
+
+function addNote() {
+    let note = document.getElementById('noteContentArea').value;
+    if (!note) {
+        alert('Please write a note...');
+        return;
+    }
+
+    sections[activeSectionIndex].items.push({ name: note, done: false });
+    currentList.sections = sections;
+    parentLists[listId] = currentList;
+    localStorage.setItem('lists', JSON.stringify(parentLists));
+
+    document.getElementById('noteContentArea').value = "";
+    menuOptions('.addNoteMenu', 'auto', -10, 'none');
+
+    const sectionClass = 'section' + (sections.length - 1 - activeSectionIndex);
+    const sectionContainer = document.querySelector('.' + sectionClass);
+    renderNotes(sectionContainer, activeSectionIndex, sections[activeSectionIndex]);
 }
