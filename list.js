@@ -42,7 +42,7 @@ function renderSections() {
     sections.forEach((section, i) => {
         const currentSection = sections[sectionsAmount-i];
         const sectionElement = document.createElement('div');
-        const sectionClass = "section"+i;
+        const sectionClass = `section${i}`;
         sectionElement.className = `sectionElement mainTheme ${sectionClass}`;
         sectionElement.innerHTML = `<div class='sectionName'><span class='expandSign'>></span><h2> ${currentSection.sectionName}</h2></div>`;
         expandSign = sectionElement.querySelector('.expandSign');
@@ -77,7 +77,7 @@ function addSection() {
 
 //Expanding Section to show Notes function
 function expandSection(sectionIndex, currentSection, sectionClass) {
-    const sectionContainer = document.querySelector('.'+sectionClass);
+    const sectionContainer = document.querySelector(`.${sectionClass}`);
     const expandSign = sectionContainer.querySelector('.expandSign');
     if (currentSection.expanded) {
         currentSection.expanded = false;
@@ -157,7 +157,7 @@ function addNote() {
     document.getElementById('noteContentArea').value = "";
     menuOptions('.addNoteMenu', 'auto', -10, 'none');
 
-    const sectionClass = 'section' + (sections.length - 1 - activeSectionIndex);
-    const sectionContainer = document.querySelector('.' + sectionClass);
+    const sectionClass = `section${(sections.length - 1 - activeSectionIndex)}`;
+    const sectionContainer = document.querySelector(`.${sectionClass}`);
     renderNotes(sectionContainer, activeSectionIndex, sections[activeSectionIndex]);
 }
