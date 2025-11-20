@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Details</title>
+    <link rel="stylesheet" href="sections&notes.css">
+</head>
+<body>
+
+    <!-- Grid Container -->
+    <section class="grid-container">
+
+        <!-- Go Back to Main Page -->
+         <nav class="grid-item back mainTheme" id="goBack">
+            <h1>Go back to Lists Menu</h1>
+         </nav>
+
+        <!-- Header -->
+        <header class="grid-item header mainTheme">
+            <h1 id="listTitle">Loading...</h1>
+        </header>
+
+        <!-- Delete List -->
+         <nav class="grid-item delete mainTheme" id="deleteList">
+            <h1>Delete THIS List</h1>
+         </nav>
+
+        <!-- Sidebar -->
+        <section class="grid-item sidebar" id="sidebarContainer"></section>
+
+        <!-- Sections -->
+        <section class="grid-item section" id="sectionsContainer"></section>
+
+        <!-- Footer -->
+        <footer class="grid-item footer">
+            <p>© 2025 Jakub Miczek "To-Do List App"</p>
+        </footer>
+
+    </section>
+
+    <!-- Whole Page -->
+    <section class = "wholePage">
+
+        <!-- Adding Section Menu -->
+        <section class="addSectionMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <header class="addSectionItem">
+                <h2>Section Name:</h2>
+            </header>
+
+            <hr>
+
+            <!-- Place to type the Section Name -->
+            <input value="" class="addSectionItem sectionInput sectionAddStyle" type="text" id="sectionNameInput" placeholder="< < < Enter section name > > >" >
+
+            <hr>
+
+            <!-- Options -->
+            <section class="addSectionOptions">
+
+                <!-- Add Section -->
+                <nav class="addSectionItem sectionAdd" id="sectionAdd"><h2>Add Section</h2></nav>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event -->
+                <nav class="addSectionItem sectionAdd" id="sectionMenuCancel"><h2>Cancel</h2></nav>
+            </section>
+
+        </section>
+
+        <!-- Adding New Note Menu -->
+        <section class="addNoteMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <header class="addNoteItem">
+                <h2>Write something...</h2>
+            </header>
+
+            <hr>
+
+            <!-- Place to write a Note -->
+             <textarea class="addNoteItem noteArea noteAddStyle" id="noteContentArea" placeholder="< < < Enter your note here > > >"></textarea>
+
+            <hr>
+
+            <!-- Options -->
+            <section class="addNoteOptions">
+
+                <!-- Add Note -->
+                <nav class="addNoteItem noteAdd" id="noteAdd"><h2>Add Note</h2></nav>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event -->
+                <nav class="addSectionItem sectionAdd" id="noteMenuCancel"><h2>Cancel</h2></nav>
+            </section>
+
+        </section>
+
+    </section>
+
+    <!-- Scripts -->
+    <script src="lists.js"></script>
+    <script src="sections.js"></script>
+    <script src="notes.js"></script>
+    <script src="sharedFunctions.js"></script>
+
+</body>
+</html>

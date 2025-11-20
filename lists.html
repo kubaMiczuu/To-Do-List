@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lists Menu</title>
+    <link rel="stylesheet" href="lists.css">
+</head>
+<body>
+
+    <!-- Grid Container -->
+    <section class="grid-container">
+
+        <!-- Header -->
+        <header class="grid-item header mainTheme">
+            <h1>Your To-Do Lists</h1>
+        </header>
+
+        <!-- Menu -->
+        <main class="grid-item menu"></main>
+
+        <!-- Footer -->
+        <footer class="grid-item footer">
+            <p>© 2025 Jakub Miczek "To-Do List App"</p>
+        </footer>
+
+    </section>
+
+    <!-- Whole Page -->
+    <section class = "wholePage">
+
+        <!-- Adding List Menu -->
+        <section class="addListMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <header class="addListItem">
+                <h2>List Name:</h2>
+            </header>
+
+            <hr>
+
+            <!-- Place to type the List Name -->
+            <input value="" class="addListItem listInput listAddStyle" type="text" id="listNameInput" placeholder="< < < Enter list name > > >" >
+
+            <hr>
+
+            <!-- Options -->
+            <section class="addListOptions">
+
+                <!-- Add List -->
+                <nav class="addListItem listAdd" id="listMenuAdd"><h2>Add List</h2></nav>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event -->
+                <nav class="addListItem listAdd" id="listMenuCancel"><h2>Cancel</h2></nav>
+            </section>
+
+        </section>
+
+    </section>
+
+    <!-- Scripts -->
+    <script src="lists.js"></script>
+    <script src="sharedFunctions.js"></script>
+</body>
+</html>

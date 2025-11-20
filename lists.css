@@ -32,9 +32,9 @@ body {
     padding: 20px;
     font-family: 'Times New Roman', Times, serif;
     grid-template-areas: 
-        "back header header delete"
-        "sidebar section section section"
-        "footer footer footer footer";
+        "header header"
+        "menu menu"
+        "footer footer";
 }
 .grid-item {
     font-weight: bold;
@@ -43,34 +43,19 @@ body {
     padding: 10px;
     text-align: center;
 }
-.back, .header, .delete {
+.header {
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
     border: 1px solid wheat;
+    grid-area: header;
     background-color: #302f2f;;
 }
-.back {
-    grid-area: back;
-    cursor: pointer;
-}
-.header {
-    grid-area: header;
-}
-.delete {
-    grid-area: delete;
-    cursor:
-     pointer;
-}
-.sidebar {
-    grid-area: sidebar;
-    text-align: left;
-}
-.section {
-    grid-area: section;
+.menu {
+    grid-area: menu;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     gap: 10px;
+    text-align: left;
 }
 .footer {
     grid-area: footer;
@@ -78,71 +63,20 @@ body {
     color: wheat;
 }
 
-/* Sections */
-.sectionElement {
+/* Lists */
+.listElement {
     border: 2px dashed wheat;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    padding: 5px 15px;
-    text-align: left;
-    width: 85%;
-    height: auto;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-.sectionElement {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: 
-        "sectionHeader sectionHeader addNoteButton deleteSectionButton"
-        "notesContainer notesContainer notesContainer notesContainer";
-}
-.sectionName {
-    grid-area: sectionHeader;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-}
-.addNote {
-    grid-area: addNoteButton;
+    padding: 20px;
+    cursor: pointer;
     text-align: center;
-    cursor: pointer;
-}
-.deleteSection {
-    grid-area: deleteSectionButton;
-    text-align: center;
-    cursor: pointer;
-}
-.notesContainer {
-    grid-area: notesContainer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-.noteElement {
-    padding: 10px;
-    text-align: left;
-    width: 95%;
-    height: auto;
+    width: 20%;
     transition: background-color 0.3s, border-color 0.3s;
-}
-.expandSign {
-    font-weight: bold;
-    margin-right: 10px;
-    color: wheat;
-    border: solid wheat 2px;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: xx-large;
-    cursor: pointer;
-}
-.expandSign:hover {
-    background-color: wheat;
-    color: #202020;
 }
 
-/* Add Section Menu */
-.addSectionMenu, .addNoteMenu {
+/* Add List Menu */
+.addListMenu {
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
     border-radius: 8px;
@@ -154,43 +88,43 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.addSectionItem, .addNoteItem {
+.addListItem {
     text-align: center;
     width: 80%;
     flex: 1 1 0;
 }
-.addSectionMenu hr, .addNoteMenu hr {
+.addListMenu hr {
     border: none;              
     height: 2px;               
     background-color: wheat;
     width: 90%;
 }
-.sectionAddStyle, .noteAddStyle {
+.listAddStyle {
     padding: 10px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s, border-color 0.3s;
 }
-.addSectionOptions, .addNoteOptions {
+.addListOptions {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
 }
-.sectionInput, .noteArea {
+.listInput {
     font-size:medium;
     background-color: #302f2f;
     border: none;
     color: wheat;
 }
-.sectionInput::placeholder, .noteArea::placeholder {
+.listInput::placeholder {
     color: wheat;
 }
-.sectionInput:focus, .noteArea:focus {
+.listInput:focus{
     outline: none;
     box-shadow: none;
 }
-.sectionAdd, .noteAdd {
+.listAdd {
     font-size: medium;
     cursor: pointer;
 }
