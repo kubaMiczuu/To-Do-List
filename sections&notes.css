@@ -22,6 +22,20 @@ body {
     border: 1px solid wheat;
     color: wheat;
 }
+/* Mouse Hover Effect */
+.mouseHover:hover {
+    background-color: wheat;
+    color: #202020;
+}
+/* Menu Hover Effect */
+.menuHover {
+    transition: text-decoration 0.3s, color 0.3s;
+}
+.menuHover:hover {
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    color: wheat;
+}
 
 /* Grid Container */
 .grid-container {
@@ -106,11 +120,13 @@ body {
     grid-area: addNoteButton;
     text-align: center;
     cursor: pointer;
+    border-radius: 4px;
 }
 .deleteSection {
     grid-area: deleteSectionButton;
     text-align: center;
     cursor: pointer;
+    border-radius: 4px;
 }
 .notesContainer {
     grid-area: notesContainer;
@@ -130,15 +146,32 @@ body {
     font-weight: bold;
     margin-right: 10px;
     color: wheat;
-    border: solid wheat 2px;
-    border-radius: 4px;
     padding: 2px 6px;
     font-size: xx-large;
     cursor: pointer;
+    border-radius: 4px;
 }
-.expandSign:hover {
+.noteRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    gap: 10px;
+}
+.noteText {
+    width: 80%;
+}
+.noteDelete, .noteEdit {
+    width: 10%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.noteHr {
+    border: none;
+    height: 1px;
     background-color: wheat;
-    color: #202020;
+    width: 95%;
 }
 
 /* Add Section Menu */

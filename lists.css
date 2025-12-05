@@ -22,6 +22,20 @@ body {
     border: 1px solid wheat;
     color: wheat;
 }
+/* Mouse Hover Effect */
+.mouseHover:hover {
+    background-color: wheat;
+    color: #202020;
+}
+/* Menu Hover Effect */
+.menuHover {
+    transition: text-decoration 0.3s, color 0.3s;
+}
+.menuHover:hover {
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    color: wheat;
+}
 
 /* Grid Container */
 .grid-container {

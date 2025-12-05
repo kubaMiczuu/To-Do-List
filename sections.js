@@ -72,7 +72,7 @@ function renderSections() {
     //Add Section Button
     const sectionButton = createElement({
         baseClass: 'sectionElement',
-        extraClass: 'mainTheme',
+        extraClass: 'mainTheme mouseHover',
         innerHTML: '<h2>+ Add New Section</h2>',
         onClick: function(){openAddListMenu('.addSectionMenu')},
         cursor: 'pointer'
@@ -87,7 +87,7 @@ function renderSections() {
         const sectionElement = createElement({
             baseClass: 'sectionElement',
             extraClass: `mainTheme ${sectionClass}`,
-            innerHTML: `<section class='sectionName'><span class='expandSign'>></span><h2>${currentSection.sectionName}</h2></section>`
+            innerHTML: `<section class='sectionName'><span class='expandSign mouseHover'>></span><h2>${currentSection.sectionName}</h2></section>`
         });
         let expandSign = sectionElement.querySelector('.expandSign');
         expandSign.addEventListener('click', function(){expandSection(sectionsAmount-i, currentSection, sectionClass)});

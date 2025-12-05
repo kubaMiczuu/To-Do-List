@@ -77,9 +77,9 @@ function renderLists() {
     lists.forEach((list, i) => {
         const listElement = createElement({
             baseClass: 'listElement',
-            extraClass: 'mainTheme',
+            extraClass: 'mainTheme mouseHover',
             innerHTML:  `<h2>${list.name}</h2>`,
-            onClick: function(){window.location.href = `sections.html?id=${i}`},
+            onClick: function(){window.location.href = `sections&notes.html?id=${i}`},
         })
         listsContainer.appendChild(listElement);
     });
@@ -87,7 +87,7 @@ function renderLists() {
     //Add List Button
     const listButton = createElement({
         baseClass: 'listElement mainTheme',
-        extraClass: 'mainTheme',
+        extraClass: 'mainTheme mouseHover',
         innerHTML:  `<h2>+ Add New List</h2>`,
         onClick: function(){openAddListMenu('.addListMenu')},
     })

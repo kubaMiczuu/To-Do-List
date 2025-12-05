@@ -12,7 +12,7 @@
     <section class="grid-container">
 
         <!-- Go Back to Main Page -->
-         <nav class="grid-item back mainTheme" id="goBack">
+         <nav class="grid-item back mainTheme mouseHover" id="goBack">
             <h1>Go back to Lists Menu</h1>
          </nav>
 
@@ -22,7 +22,7 @@
         </header>
 
         <!-- Delete List -->
-         <nav class="grid-item delete mainTheme" id="deleteList">
+         <nav class="grid-item delete mainTheme mouseHover" id="deleteList">
             <h1>Delete THIS List</h1>
          </nav>
 
@@ -61,12 +61,12 @@
             <section class="addSectionOptions">
 
                 <!-- Add Section -->
-                <nav class="addSectionItem sectionAdd" id="sectionAdd"><h2>Add Section</h2></nav>
+                <nav class="addSectionItem sectionAdd menuHover" id="sectionAdd"><h2>Add Section</h2></nav>
 
                 <h2>|</h2>
 
                 <!-- Cancel Event -->
-                <nav class="addSectionItem sectionAdd" id="sectionMenuCancel"><h2>Cancel</h2></nav>
+                <nav class="addSectionItem sectionAdd menuHover" id="sectionMenuCancel"><h2>Cancel</h2></nav>
             </section>
 
         </section>
@@ -90,12 +90,41 @@
             <section class="addNoteOptions">
 
                 <!-- Add Note -->
-                <nav class="addNoteItem noteAdd" id="noteAdd"><h2>Add Note</h2></nav>
+                <nav class="addNoteItem noteAdd menuHover" id="noteAdd"><h2>Add Note</h2></nav>
 
                 <h2>|</h2>
 
                 <!-- Cancel Event -->
-                <nav class="addSectionItem sectionAdd" id="noteMenuCancel"><h2>Cancel</h2></nav>
+                <nav class="addSectionItem sectionAdd menuHover" id="noteMenuCancel"><h2>Cancel</h2></nav>
+            </section>
+
+        </section>
+
+         <!-- Edditing Note  -->
+        <section class="editNoteMenu addNoteMenu mainTheme">
+            
+            <!-- Menu Title -->
+            <header class="addNoteItem">
+                <h2>Edit your note...</h2>
+            </header>
+
+            <hr>
+
+            <!-- Place to write a Note -->
+             <textarea class="noteAddStyle" id="noteContentArea" placeholder="< < < Enter your note here > > >"></textarea>
+
+            <hr>
+
+            <!-- Options -->
+            <section class="addNoteOptions">
+
+                <!-- Edit Note -->
+                <nav class="addNoteItem noteAdd menuHover" id="noteEdit"><h2>Save</h2></nav>
+
+                <h2>|</h2>
+
+                <!-- Cancel Event -->
+                <nav class="addSectionItem sectionAdd menuHover" id="noteEditCancel"><h2>Cancel</h2></nav>
             </section>
 
         </section>
