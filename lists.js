@@ -64,7 +64,7 @@ function addList() {
 
     document.getElementById('listNameInput').value = "";
 
-    closeAddListMenu('.addListMenu', 'listNameInput');
+    closeAddMenu('.addListMenu', 'listNameInput');
     renderLists();
 }
 
@@ -75,7 +75,7 @@ function renderLists() {
 
     //Creating Lists
     lists.forEach((list, i) => {
-        const listElement = createElement({
+        const listElement = createSectionElement({
             baseClass: 'listElement',
             extraClass: 'mainTheme mouseHover',
             innerHTML:  `<h2>${list.name}</h2>`,
@@ -85,11 +85,11 @@ function renderLists() {
     });
 
     //Add List Button
-    const listButton = createElement({
+    const listButton = createSectionElement({
         baseClass: 'listElement mainTheme',
         extraClass: 'mainTheme mouseHover',
         innerHTML:  `<h2>+ Add New List</h2>`,
-        onClick: function(){openAddListMenu('.addListMenu')},
+        onClick: function(){openAddMenu('.addListMenu')},
     })
     listsContainer.appendChild(listButton);
 }
@@ -100,7 +100,7 @@ listAdd.addEventListener('click', addList);
 
 //Event listener for canceling the list add menu
 const menuCancel = document.getElementById("listMenuCancel");
-menuCancel.addEventListener('click', function(){closeAddListMenu('.addListMenu', 'listNameInput')});
+menuCancel.addEventListener('click', function(){closeAddMenu('.addListMenu', 'listNameInput')});
 
 //Calling the renderLists() function at page load
 document.addEventListener('DOMContentLoaded', renderLists);

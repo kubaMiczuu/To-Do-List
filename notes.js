@@ -1,12 +1,19 @@
+activeNoteIndex = null;
+
 //Opening the note menu
 function openNoteMenu(sectionIndex) {
     activeSectionIndex = sectionIndex;
-    activeSection = sections[sectionIndex];
-    openAddListMenu('.addNoteMenu');
+    openAddMenu('.addNoteMenu');
 }
-function editNoteMenu(noteIndex) {
-    console.log("Editing note index: " + noteIndex);
- }
+
+//Opening the edit note menu
+function editNoteMenu(sectionIndex, noteIndex, text) {
+    activeNoteIndex = noteIndex;
+    activeSectionIndex = sectionIndex;
+    const contentArea = document.getElementById('noteContentAreaEdit');
+    contentArea.value = text.replace(/<br>/g, '\n');
+    openAddMenu('.editNoteMenu');
+}
 
 //Adding Note
 function addNote() {
@@ -15,14 +22,13 @@ function addNote() {
         alert('Please write a note...');
         return;
     }
+    const formattedNote = note.replace(/\n/g, '<br>');
 
-    sections[activeSectionIndex].items.push({ name: note, done: false });
-    currentList.sections = sections;
-    parentLists[listId] = currentList;
-    localStorage.setItem('lists', JSON.stringify(parentLists));
+    sections[activeSectionIndex].items.push({ name: formattedNote, done: false });
+    updateLocalStorage();
 
     document.getElementById('noteContentArea').value = "";
-    closeAddListMenu('.addNoteMenu', 'noteContentArea');
+    closeAddMenu('.addNoteMenu', 'noteContentArea');
 
     const sectionClass = `section${(sections.length - 1 - activeSectionIndex)}`;
     const sectionContainer = document.querySelector(`.${sectionClass}`);
@@ -33,9 +39,7 @@ function addNote() {
 function deleteNote(sectionIndex, noteIndex) {
     if (!sections || !sections[sectionIndex]) return;
     sections[sectionIndex].items.splice(noteIndex, 1);
-    currentList.sections = sections;
-    parentLists[listId] = currentList;
-    localStorage.setItem('lists', JSON.stringify(parentLists));
+    updateLocalStorage();
 
     const sectionClass = `section${(sections.length - 1 - sectionIndex)}`;
     const sectionContainer = document.querySelector(`.${sectionClass}`);
@@ -43,7 +47,35 @@ function deleteNote(sectionIndex, noteIndex) {
 }
 //Saving Edited Note
 function saveNoteEdit() {
+    let editedNote = document.getElementById('noteContentAreaEdit').value;
+    if (!editedNote) {
+        alert('Please write a note...');
+        return;
+    }
+    const formattedNote = editedNote.replace(/\n/g, '<br>');
+    sections[activeSectionIndex].items[activeNoteIndex].name = formattedNote;
+    closeAddMenu('.editNoteMenu', 'noteContentAreaEdit');
+    updateLocalStorage();
 
+    const sectionClass = `section${(sections.length - 1 - activeSectionIndex)}`;
+    const sectionContainer = document.querySelector(`.${sectionClass}`);
+    renderNotes(sectionContainer, activeSectionIndex, sections[activeSectionIndex]);
+}
+
+//Changing Note Status
+function noteChangeStatus(sectionIndex, noteIndex) {
+    let noteStatus = sections[sectionIndex].items[noteIndex].done;
+    const noteClass = `.noteContent${noteIndex}`;
+    const noteText = document.querySelector(noteClass);
+
+    if (!noteStatus) change(true, 'line-through');
+    else change(false, 'none');
+
+    function change(status, decoration) {
+        sections[sectionIndex].items[noteIndex].done = status;
+        updateLocalStorage();
+        noteText.style.textDecoration = decoration;
+    }
 }
 
 //Rendering Notes inside Section function
@@ -51,7 +83,7 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
     sectionContainer.querySelectorAll('.noteElement').forEach(el => el.remove());
 
     //Add Note button
-    const noteButton = createElement({
+    const noteButton = createSectionElement({
         baseClass: 'noteElement',
         extraClass: 'addNote mouseHover',
         innerHTML: '<h3>+ Add New Note</h3>',
@@ -60,7 +92,7 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
     sectionContainer.appendChild(noteButton);
 
     //Delete Section button
-    const deleteButton = createElement({
+    const deleteButton = createSectionElement({
         baseClass: 'noteElement',
         extraClass: 'deleteSection mouseHover',
         innerHTML: '<h3>- Delete Section</h3>',
@@ -69,7 +101,7 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
     sectionContainer.appendChild(deleteButton);
 
     //Notes Container
-    const notesContainer = createElement({
+    const notesContainer = createSectionElement({
         baseClass: 'noteElement',
         extraClass: 'notesContainer'
     });
@@ -82,20 +114,37 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
         notesContainer.appendChild(noteHr);
 
         //Note Row
-        const noteRow = createElement({
+        const noteRow = createSectionElement({
             baseClass: 'noteRow'
         });
 
+        //Custom Note Checkbox
+        const label = document.createElement('label');
+        label.className = `customCheckbox checkbox${i}`;
+        noteRow.appendChild(label);
+
+        const noteCheckbox = document.createElement('input');
+        noteCheckbox.type = 'checkbox';
+        noteCheckbox.checked = noteObj.done;
+        noteCheckbox.addEventListener('change', function(){noteChangeStatus(sectionIndex, i)});
+        label.appendChild(noteCheckbox);
+
+        const customCheckbox = document.createElement('span');
+        customCheckbox.innerHTML = '✔';
+        label.appendChild(customCheckbox);
+
         //Note Text
-        const noteText = createElement({
+        const noteText = createSectionElement({
             baseClass: 'noteElement',
-            extraClass: 'noteText',
-            innerHTML: `<h3>- ${noteObj.name}</h3>`
+            extraClass: `noteText noteContent${i}`,
+            innerHTML: `<span>${noteObj.name}</span>`
         });
+        noteText.style.fontSize = '1.5em';
+        if (noteObj.done) noteText.style.textDecoration = 'line-through';
         noteRow.appendChild(noteText);
 
         //Note Delete
-        const noteDelete = createElement({
+        const noteDelete = createSectionElement({
             baseClass: 'noteElement',
             extraClass: 'noteDelete mouseHover',
             innerHTML: '<h3>- Delete</h3>',
@@ -104,11 +153,11 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
         noteRow.appendChild(noteDelete);
 
         //Note Edit
-        const noteEdit = createElement({
+        const noteEdit = createSectionElement({
             baseClass: 'noteElement',
             extraClass: 'noteEdit mouseHover',
             innerHTML: '<h3># Edit</h3>',
-            onClick: function(){ editNoteMenu(i); }
+            onClick: function(){ editNoteMenu(sectionIndex, i, noteObj.name); }
         });
         noteRow.appendChild(noteEdit);
 
@@ -118,11 +167,11 @@ function renderNotes(sectionContainer, sectionIndex, currentSection) {
 
 //Event listener for canceling note menu
 const noteMenuCancel = document.getElementById('noteMenuCancel');
-noteMenuCancel.addEventListener('click', function(){closeAddListMenu('.addNoteMenu', 'noteContentArea')});
+noteMenuCancel.addEventListener('click', function(){closeAddMenu('.addNoteMenu', 'noteContentArea')});
 
 //Event listener for canceling edit note menu
 const editNoteMenuCancel = document.getElementById('noteEditCancel');
-editNoteMenuCancel.addEventListener('click', function(){closeAddListMenu('.noteEditMenu', 'noteContentArea')});
+editNoteMenuCancel.addEventListener('click', function(){closeAddMenu('.editNoteMenu', 'noteContentAreaEdit')});
 
 //Adding note
 const noteAdd = document.getElementById("noteAdd");

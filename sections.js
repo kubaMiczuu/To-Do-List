@@ -6,7 +6,6 @@ const currentList = parentLists[listId];
 const title = document.getElementById('listTitle');
 const sections = currentList.sections || [];
 let activeSectionIndex = null;
-let activeSection = null;
 
 //Changing the title to List Name
 if(currentList) title.textContent = currentList.name;
@@ -38,7 +37,7 @@ function addSection() {
 
     document.getElementById('sectionNameInput').value = "";
 
-    closeAddListMenu('.addSectionMenu', 'sectionNameInput')
+    closeAddMenu('.addSectionMenu', 'sectionNameInput')
     renderSections();
 }
 
@@ -70,11 +69,11 @@ function renderSections() {
     sectionContainer.querySelectorAll('.sectionElement').forEach(el => el.remove());
 
     //Add Section Button
-    const sectionButton = createElement({
+    const sectionButton = createSectionElement({
         baseClass: 'sectionElement',
         extraClass: 'mainTheme mouseHover',
         innerHTML: '<h2>+ Add New Section</h2>',
-        onClick: function(){openAddListMenu('.addSectionMenu')},
+        onClick: function(){openAddMenu('.addSectionMenu')},
         cursor: 'pointer'
     });
     sectionContainer.appendChild(sectionButton);
@@ -84,7 +83,7 @@ function renderSections() {
     sections.forEach((section, i) => {
         const currentSection = sections[sectionsAmount-i];
         const sectionClass = `section${i}`;
-        const sectionElement = createElement({
+        const sectionElement = createSectionElement({
             baseClass: 'sectionElement',
             extraClass: `mainTheme ${sectionClass}`,
             innerHTML: `<section class='sectionName'><span class='expandSign mouseHover'>></span><h2>${currentSection.sectionName}</h2></section>`
@@ -112,4 +111,4 @@ sectionAdd.addEventListener('click', addSection);
 
 //Event listener for canceling section menu
 const sectionMenuCancel = document.getElementById("sectionMenuCancel");
-sectionMenuCancel.addEventListener('click', function(){closeAddListMenu('.addSectionMenu', 'sectionNameInput')});
+sectionMenuCancel.addEventListener('click', function(){closeAddMenu('.addSectionMenu', 'sectionNameInput')});

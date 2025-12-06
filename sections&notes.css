@@ -128,6 +128,65 @@ body {
     cursor: pointer;
     border-radius: 4px;
 }
+
+/* Add Section Menu */
+.addSectionMenu, .addNoteMenu, .editNoteMenu {
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    display: none;
+    width: 40%;
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.addSectionItem, .addNoteItem {
+    text-align: center;
+    width: 80%;
+    flex: 1 1 0;
+}
+.addSectionMenu hr, .addNoteMenu hr, .editNoteMenu hr {
+    border: none;              
+    height: 2px;               
+    background-color: wheat;
+    width: 90%;
+}
+.sectionAddStyle, .noteAddStyle {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.addSectionOptions, .addNoteOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.sectionInput, .noteArea {
+    font-size:medium;
+    background-color: #302f2f;
+    border: none;
+    color: wheat;
+}
+.noteArea {
+    font-size: larger;
+}
+.sectionInput::placeholder, .noteArea::placeholder {
+    color: wheat;
+}
+.sectionInput:focus, .noteArea:focus {
+    outline: none;
+    box-shadow: none;
+}
+.sectionAdd, .noteAdd {
+    font-size: medium;
+    cursor: pointer;
+}
+
+/* Notes Container */
 .notesContainer {
     grid-area: notesContainer;
     display: flex;
@@ -173,57 +232,18 @@ body {
     background-color: wheat;
     width: 95%;
 }
-
-/* Add Section Menu */
-.addSectionMenu, .addNoteMenu {
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 20px;
-    display: none;
-    width: 40%;
-    height: 30%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.customCheckbox input {
+  display: none;
 }
-.addSectionItem, .addNoteItem {
-    text-align: center;
-    width: 80%;
-    flex: 1 1 0;
+.customCheckbox span {
+  display: inline-block;
+  transform: scale(2);
+  border: 1px solid wheat;
+  border-radius: 20%;
+  margin-right: 30px;
+  background-color: wheat;
+  padding: 0% 10%;
 }
-.addSectionMenu hr, .addNoteMenu hr {
-    border: none;              
-    height: 2px;               
-    background-color: wheat;
-    width: 90%;
-}
-.sectionAddStyle, .noteAddStyle {
-    padding: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-.addSectionOptions, .addNoteOptions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-}
-.sectionInput, .noteArea {
-    font-size:medium;
-    background-color: #302f2f;
-    border: none;
-    color: wheat;
-}
-.sectionInput::placeholder, .noteArea::placeholder {
-    color: wheat;
-}
-.sectionInput:focus, .noteArea:focus {
-    outline: none;
-    box-shadow: none;
-}
-.sectionAdd, .noteAdd {
-    font-size: medium;
-    cursor: pointer;
+.customCheckbox input:checked + span {
+  color: #302f2f;
 }
